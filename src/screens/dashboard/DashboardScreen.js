@@ -4,7 +4,7 @@ import {GlobalContext} from '../../context/GlobalContext';
 import {style} from './DashboardScreen.style';
 
 export const DashboardScreen = ({navigation}) => {
-  const {dashBoardLocation, randomAuthKey, removeAuthToken} =
+  const {dashBoardLocation, randomAuthKey, removeAuthToken, setAuthToken} =
     useContext(GlobalContext);
 
   return (
@@ -13,7 +13,7 @@ export const DashboardScreen = ({navigation}) => {
       <Button
         title={'Log Out'}
         onPress={() => {
-          removeAuthToken();
+          removeAuthToken(setAuthToken);
           navigation.navigate(dashBoardLocation);
         }}
       />

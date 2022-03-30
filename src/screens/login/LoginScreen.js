@@ -9,7 +9,7 @@ export const LoginScreen = ({navigation}) => {
     randomAuthKey,
     storeAuthToken,
     getAuthToken,
-    removeValue,
+    setAuthToken,
   } = useContext(GlobalContext);
 
   return (
@@ -19,7 +19,7 @@ export const LoginScreen = ({navigation}) => {
         title={'Log In'}
         onPress={() => {
           storeAuthToken(randomAuthKey);
-          getAuthToken();
+          getAuthToken(setAuthToken);
           navigation.navigate(loginLocation);
         }}
       />
