@@ -11,35 +11,31 @@ const Stack = createNativeStackNavigator();
 export const App = () => {
   const [authToken, setAuthToken] = useState();
 
-  const storeData = async value => {
+  const storeAuthToken = async authToken => {
     try {
-      await AsyncStorage.setItem('@storage_Key', value);
-    } catch (e) {
-      // saving error
+      await AsyncStorage.setItem('authToken', authToken);
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const getData = async () => {
+  const getAuthToken = async () => {
     try {
-      const value = await AsyncStorage.getItem('@storage_Key');
-      if (value !== null) {
-        // value previously stored
-        setAuthToken(value);
-      }
-    } catch (e) {
-      // error reading value
+      const tempAuthToken = await AsyncStorage.getItem('authToken');
+      tempAuthToken && setAuthToken(tempAuthToken);
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const removeValue = async () => {
+  const removeAuthToken = async () => {
     try {
       await AsyncStorage.removeItem('@storage_Key');
       setAuthToken();
-    } catch (e) {
-      // remove error
+    } catch (error) {
+      console.error(error);
     }
   };
-
 
   const loginLocation = 'Login';
   const dashBoardLocation = 'Dashboard';
@@ -52,9 +48,9 @@ export const App = () => {
         loginLocation,
         randomAuthKey,
         setAuthToken,
-        storeData,
-        getData,
-        removeValue,
+        storeAuthToken,
+        getAuthToken,
+        removeAuthToken,
       }}>
       <NavigationContainer>
         {authToken ? (
