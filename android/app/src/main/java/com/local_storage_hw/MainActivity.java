@@ -1,6 +1,7 @@
 package com.local_storage_hw;
 
 import com.facebook.react.ReactActivity;
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +13,9 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "local_storage_HW";
   }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
+}
 }
